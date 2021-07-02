@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     
     func addToEquation(value: String){
         equation = equation + value.replacingOccurrences(of: "π", with: "3.14159")
-        calcWorkings.text = equation
+        calcWorkings.text = equation.replacingOccurrences(of: "3.14159", with: "π")
     }
     
     @IBAction func percentTap(_ sender: Any) {

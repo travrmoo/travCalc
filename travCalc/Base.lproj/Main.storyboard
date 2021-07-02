@@ -87,7 +87,6 @@
                                                     <color key="titleColor" systemColor="systemOrangeColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="divideTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GAp-r1-4Pz"/>
                                                     <action selector="sqRootTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wCo-sT-vVy"/>
                                                 </connections>
                                             </button>
@@ -174,7 +173,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3td-T2-kcV">
                                                 <rect key="frame" x="310.5" y="0.0" width="103.5" height="102.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="X">
+                                                <state key="normal" title="x">
                                                     <color key="titleColor" systemColor="systemOrangeColor"/>
                                                 </state>
                                                 <connections>
