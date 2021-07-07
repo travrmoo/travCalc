@@ -158,7 +158,7 @@ class ViewController: UIViewController {
 
         var endArr = finalArr + lastTwo
 
-        if endArr[endArr.count - 1] == "." ||
+        while endArr[endArr.count - 1] == "." ||
             endArr[endArr.count - 1] == "-" ||
             endArr[endArr.count - 1] == "+" ||
             endArr[endArr.count - 1] == "*"
