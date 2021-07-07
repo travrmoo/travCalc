@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     func addToEquation(value: String){
         equation = equation + value.replacingOccurrences(of: "π", with: "3.14159")
         calcWorkings.text = equation.replacingOccurrences(of: "3.14159", with: "π")
+        
     }
     
     @IBAction func percentTap(_ sender: Any) {
@@ -83,14 +84,101 @@ class ViewController: UIViewController {
     
     @IBAction func equalsTap(_ sender: Any) {
         
-        let expression = NSExpression(format: equation)
-        let result = expression.expressionValue(with: nil, context: nil) as! Double
-        let resultString = formatResult(result: result)
-        calcResults.text = resultString
+       
+       
+        let equationArr = Array(equation)
+        var newArr = [String]()
+        var finalArr = [String]()
+        let lastTwo = equationArr.suffix(2).map{String($0)}
+ 
         
-    }
+        for i in 0..<equationArr.count - 1{
+
+            if equationArr[i] == equationArr[i + 1] &&
+                equationArr[i] == "1" ||
+                equationArr[i] ==  "2" ||
+                equationArr[i] ==  "3" ||
+                equationArr[i] ==  "4" ||
+                equationArr[i] ==  "5" ||
+                equationArr[i] ==  "6" ||
+                equationArr[i] ==  "7" ||
+                equationArr[i] ==  "8" ||
+                equationArr[i] ==  "9" ||
+                equationArr[i] ==  "0" ||
+                equationArr[i] ==  "(" ||
+                equationArr[i] ==  ")" ||
+                equationArr[i] !=  "." &&
+                equationArr[i] !=  "-" &&
+                equationArr[i] !=  "+" &&
+                equationArr[i] !=  "*"
+            {
+                newArr.append(String(equationArr[i]))
+                
+        }
+            else if equationArr[i] != equationArr[i + 1]{
+                newArr.append(String(equationArr[i]))
+            }
+            
+        }
+
+        for i in 0..<newArr.count - 1{
+
+            if  newArr[i] == "0" ||
+                    newArr[i] == "1" ||
+                    newArr[i] == "2" ||
+                    newArr[i] == "3" ||
+                    newArr[i] == "4" ||
+                    newArr[i] == "5" ||
+                    newArr[i] == "6" ||
+                    newArr[i] == "7" ||
+                    newArr[i] == "8" ||
+                    newArr[i] == "9" ||
+                    newArr[i] == "0" ||
+                    newArr[i] == "(" ||
+                    newArr[i] == ")"
+                {
+                finalArr.append(newArr[i])
+            }
+            else if newArr[i + 1] == "1" ||
+            newArr[i + 1] == "2" ||
+            newArr[i + 1] == "3" ||
+            newArr[i + 1] == "4" ||
+            newArr[i + 1] == "5" ||
+            newArr[i + 1] == "6" ||
+            newArr[i + 1] == "7" ||
+            newArr[i + 1] == "8" ||
+            newArr[i + 1] == "9" ||
+            newArr[i + 1] == "0" ||
+            newArr[i + 1] == "(" ||
+            newArr[i + 1] == ")"
+        {
+                finalArr.append(newArr[i])
+            }
+        }
+
+        var endArr = finalArr + lastTwo
+
+        if endArr[endArr.count - 1] == "." ||
+            endArr[endArr.count - 1] == "-" ||
+            endArr[endArr.count - 1] == "+" ||
+            endArr[endArr.count - 1] == "*"
+            {
+            endArr = endArr.dropLast()
+            }
+        
+       let resultString = endArr.joined()
+        
+       let checkPercent = resultString.replacingOccurrences(of: "%", with: "*0.01")
+        
+       let expression = NSExpression(format: checkPercent)
+        
+       let result = expression.expressionValue(with: nil, context: nil) as! Double
+        
+        calcResults.text = String(result)
+        calcWorkings.text = String(resultString)
+        
+        }
     
-  
     
     func formatResult(result: Double) -> String {
         
@@ -98,7 +186,7 @@ class ViewController: UIViewController {
             return String(format: "%.0f", result)
         }
         else {
-            return String(format: "%.2f", result)
+            return String(format: "%.10f", result)
         }
     }
     
